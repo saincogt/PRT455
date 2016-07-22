@@ -1,0 +1,22 @@
+body {
+  background-color: #FFF;
+}
+
+#flappy-bird-reborn {
+  border: 2px solid white;
+  width: 288px;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+p {
+  text-align: center;
+  color: white;
+}
+
+a {
+  color: #3caaff;
+}
+h1 {
+	border: 40px solid white;
+}
