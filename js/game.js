@@ -66,7 +66,7 @@ Bird.prototype.update = function() {
 Bird.prototype.flap = function() {
   if(!!this.alive) {
     this.flapSound.play();
-    //cause our bird to "jump" upward
+    //cause our bird to "jump" upward (-400)
     this.body.velocity.y = -400;
     // rotate the bird to -40 degrees
     this.game.add.tween(this).to({angle: -40}, 100).start();
@@ -178,6 +178,7 @@ PipeGroup.prototype.reset = function(x, y) {
   this.bottomPipe.reset(0,440);
   this.x = x;
   this.y = y;
+  // -200
   this.setAll('body.velocity.x', -200);
   this.hasScored = false;
   this.exists = true;
@@ -493,7 +494,8 @@ Play.prototype = {
         this.game.add.existing(this.scoreboard);
         this.scoreboard.show(this.score);
         this.bird.onGround = true;
-    } else if (enemy instanceof Pipe){
+    } 
+    else if (enemy instanceof Pipe){
         this.pipeHitSound.play();
     }
 
