@@ -73,6 +73,20 @@ Bird.prototype.flap = function() {
   }
 };
 
+// move the bird using A or D
+
+Bird.prototype.forward = function() {
+  if (!!this.alive) {
+    this.body.x += 10;
+  }
+};
+
+Bird.prototype.backward = function() {
+  if (!!this.alive) {
+    this.body.x =- 10;
+  }
+};
+
 Bird.prototype.revived = function() { 
 };
 
@@ -427,9 +441,8 @@ Play.prototype = {
     // keep the spacebar from propogating up to the browser
     this.game.input.keyboard.addKeyCapture([Phaser.Keyboard.SPACEBAR]);
 
-    
-
     this.score = 0;
+    // score text location.
     this.scoreText = this.game.add.bitmapText(this.game.width/2, 10, 'flappyfont',this.score.toString(), 24);
 
     this.instructionGroup = this.game.add.group();
