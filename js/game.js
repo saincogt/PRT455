@@ -562,7 +562,7 @@ Preload.prototype = {
     
     this.load.image('scoreboard', 'assets/scoreboard.png');
     this.load.spritesheet('medals', 'assets/medals.png',44, 46, 2);
-    this.load.image('gameover', 'assets/gameover.png');
+    this.load.image('gameover', 'assets/gameover.gif');
     this.load.image('particle', 'assets/particle.png');
 
     this.load.audio('flap', 'assets/flap.wav');
