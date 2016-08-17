@@ -66,7 +66,7 @@ Bird.prototype.update = function() {
 Bird.prototype.flap = function() {
   if(!!this.alive) {
     this.flapSound.play();
-    //cause our bird to "jump" upward (-400)
+    // cause our bird to "jump" upward (-400)
     this.body.velocity.y = -400;
     // rotate the bird to -40 degrees
     this.game.add.tween(this).to({angle: -40}, 100).start();
