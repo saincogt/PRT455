@@ -25,7 +25,7 @@ var Bird = function(game, x, y, frame) {
   Phaser.Sprite.call(this, game, x, y, 'bird', frame);
   this.anchor.setTo(0.5, 0.5);
   this.animations.add('flap');
-  this.animations.play('flap', 12, true);
+  this.animations.play('flap', 4, true);
 
   this.flapSound = this.game.add.audio('flap');
 
@@ -55,7 +55,8 @@ Bird.prototype.update = function() {
   // check to see if our angle is less than 90
   // if it is rotate the bird towards the ground by 2.5 degrees
   if(this.angle < 90 && this.alive) {
-    this.angle += 2.5;
+    // Original value is 2.5;
+    this.angle += 1;
   } 
 
   if(!this.alive) {
@@ -67,23 +68,24 @@ Bird.prototype.flap = function() {
   if(!!this.alive) {
     this.flapSound.play();
     // cause our bird to "jump" upward (-400)
-    this.body.velocity.y = -400;
+    this.body.velocity.y = -350;
     // rotate the bird to -40 degrees
-    this.game.add.tween(this).to({angle: -40}, 100).start();
+    this.game.add.tween(this).to({angle: -30}, 100).start();
+    this.forward();
   }
 };
 
 // move the bird using A or D
 
 Bird.prototype.forward = function() {
-  if (!!this.alive) {
-    this.body.x += 10;
+  if (this.alive) {
+    this.body.x += 50;
   }
 };
 
 Bird.prototype.backward = function() {
   if (!!this.alive) {
-    this.body.x =- 10;
+    this.body.x -= 10;
   }
 };
 
@@ -109,7 +111,7 @@ module.exports = Bird;
 var Ground = function(game, x, y, width, height) {
   Phaser.TileSprite.call(this, game, x, y, width, height, 'ground');
   // start scrolling our ground
-  this.autoScroll(-200,0);
+  this.autoScroll(-100,0);
   
   // enable physics on the ground sprite
   // this is needed for collision detection
@@ -143,7 +145,6 @@ var Pipe = function(game, x, y, frame) {
 
   this.body.allowGravity = false;
   this.body.immovable = true;
-  
 };
 
 Pipe.prototype = Object.create(Phaser.Sprite.prototype);
@@ -192,7 +193,8 @@ PipeGroup.prototype.reset = function(x, y) {
   this.bottomPipe.reset(0,440);
   this.x = x;
   this.y = y;
-  // -200
+  
+  // -200 the velocity of the PipeGroup comes into the screen
   this.setAll('body.velocity.x', -200);
   this.hasScored = false;
   this.exists = true;
@@ -343,7 +345,7 @@ Menu.prototype = {
     // add the ground sprite as a tile
     // and start scrolling in the negative x direction
     this.ground = this.game.add.tileSprite(0,400, 335,112,'ground');
-    this.ground.autoScroll(-200,0);
+    this.ground.autoScroll(-100,0);
 
     /** STEP 1 **/
     // create a group to put the title assets in 
@@ -366,7 +368,7 @@ Menu.prototype = {
     // add an animation to the bird
     // and begin the animation
     this.bird.animations.add('flap');
-    this.bird.animations.play('flap', 12, true);
+    this.bird.animations.play('flap', 5, true);
     
     /** STEP 5 **/
     // Set the originating location of the group
@@ -408,7 +410,7 @@ Play.prototype = {
 
 
     // give our world an initial gravity of 1200
-    this.game.physics.arcade.gravity.y = 1200;
+    this.game.physics.arcade.gravity.y = 1000;
 
     // add the background sprite
     this.background = this.game.add.sprite(0,0,'background');
@@ -447,7 +449,9 @@ Play.prototype = {
 
     this.instructionGroup = this.game.add.group();
     this.instructionGroup.add(this.game.add.sprite(this.game.width/2, 100,'getReady'));
-    this.instructionGroup.add(this.game.add.sprite(this.game.width/2, 325,'instructions'));
+    // this.instructionGroup.add(this.game.add.sprite(this.game.width/2, 325,'instructions'));
+    this.instructionGroup.add(this.game.add.sprite(this.game.width/2, 325, 'tapstart'));
+    this.instructionGroup.add(this.game.add.sprite(this.game.width/2, 365, 'handpointer'));
     this.instructionGroup.setAll('anchor.x', 0.5);
     this.instructionGroup.setAll('anchor.y', 0.5);
 
@@ -486,7 +490,8 @@ Play.prototype = {
         this.bird.body.allowGravity = true;
         this.bird.alive = true;
         // add a timer
-        this.pipeGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 1.25, this.generatePipes, this);
+        // Pipe generates in every 1.25 seconds
+        this.pipeGenerator = this.game.time.events.loop(Phaser.Timer.SECOND * 3, this.generatePipes, this);
         this.pipeGenerator.timer.start();
 
         this.instructionGroup.destroy();
@@ -557,8 +562,10 @@ Preload.prototype = {
     this.load.spritesheet('pipe', 'assets/pipes.png', 54,320,2);
     this.load.image('startButton', 'assets/start-button.png');
     
-    this.load.image('instructions', 'assets/instructions.png');
+    // this.load.image('instructions', 'assets/instructions.png');
     this.load.image('getReady', 'assets/get-ready.png');
+    this.load.image('tapstart', 'assets/tapstart.png');
+    this.load.image('handpointer', 'assets/pointer.png');
     
     this.load.image('scoreboard', 'assets/scoreboard.png');
     this.load.spritesheet('medals', 'assets/medals.png',44, 46, 2);
