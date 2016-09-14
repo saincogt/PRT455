@@ -220,10 +220,10 @@ var Scoreboard = function(game) {
   this.scoreboard = this.create(this.game.width / 2, 200, 'scoreboard');
   this.scoreboard.anchor.setTo(0.5, 0.5);
   
-  this.scoreText = this.game.add.bitmapText(this.scoreboard.width, 180, 'flappyfont', '', 18);
+  this.scoreText = this.game.add.bitmapText(this.scoreboard.width-20, 178, 'flappyfont', '', 18);
   this.add(this.scoreText);
   
-  this.bestText = this.game.add.bitmapText(this.scoreboard.width, 230, 'flappyfont', '', 18);
+  this.bestText = this.game.add.bitmapText(this.scoreboard.width-20, 228, 'flappyfont', '', 18);
   this.add(this.bestText);
 
   // add our start button with a callback
@@ -255,6 +255,7 @@ Scoreboard.prototype.show = function(score) {
 
   this.bestText.setText(bestScore.toString());
 
+  // 10 to 20
   if(score >= 10 && score < 20)
   {
     coin = this.game.add.sprite(-65 , 7, 'medals', 1);
@@ -270,6 +271,7 @@ Scoreboard.prototype.show = function(score) {
     this.scoreboard.addChild(coin);
     
      // Emitters have a center point and a width/height, which extends from their center point to the left/right and up/down
+     // 400
     var emitter = this.game.add.emitter(coin.x, coin.y, 400);
     this.scoreboard.addChild(emitter);
     emitter.width = coin.width;
@@ -299,9 +301,6 @@ Scoreboard.prototype.show = function(score) {
 Scoreboard.prototype.startClick = function() {
   this.game.state.start('play');
 };
-
-
-
 
 
 Scoreboard.prototype.update = function() {
@@ -361,7 +360,8 @@ Menu.prototype = {
     /** STEP 3 **/
     // create the bird sprite 
     // and add it to the title group
-    this.bird = this.add.sprite(200,5,'bird');
+    this.bird = this.add.sprite(80,50,'bird');
+    this.bird.scale.setTo(2, 2);
     this.titleGroup.add(this.bird);
     
     /** STEP 4 **/
@@ -382,11 +382,24 @@ Menu.prototype = {
     // add our start button with a callback
     this.startButton = this.game.add.button(this.game.width/2, 300, 'startButton', this.startClick, this);
     this.startButton.anchor.setTo(0.5,0.5);
+
+    this.fullScreenButton = this.game.add.button(this.game.width-40, this.game.height-20, 'fullScreenButton', this.fullScreen, this);
+    this.fullScreenButton.anchor.setTo(0.5, 0.5);
+    this.fullScreenButton.scale.setTo(0.2, 0.2);
+    // this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+    // this.scale.pageAlignHorizontally = true;
   },
   startClick: function() {
     // start button click handler
     // start the 'play' state
     this.game.state.start('play');
+  },
+  fullScreen: function () {
+    if (this.game.scale.isFullScreen) {
+      this.game.scale.stopFullScreen();
+    } else {
+      this.game.scale.startFullScreen(false);
+    }
   }
 };
 
@@ -445,7 +458,7 @@ Play.prototype = {
 
     this.score = 0;
     // score text location.
-    this.scoreText = this.game.add.bitmapText(this.game.width/2, 10, 'flappyfont',this.score.toString(), 24);
+    this.scoreText = this.game.add.bitmapText(this.game.width/2-20, 10, 'flappyfont',this.score.toString(), 34);
 
     this.instructionGroup = this.game.add.group();
     this.instructionGroup.add(this.game.add.sprite(this.game.width/2, 100,'getReady'));
@@ -555,7 +568,7 @@ Preload.prototype = {
 
     this.load.onLoadComplete.addOnce(this.onLoadComplete, this);
     this.load.setPreloadSprite(this.asset);
-    this.load.image('background', 'assets/background.png');
+    this.load.image('background', 'assets/background.jpg');
     this.load.image('ground', 'assets/ground.png');
     this.load.image('title', 'assets/title.png');
     this.load.spritesheet('bird', 'assets/bird.png', 34,24,3);
@@ -566,6 +579,7 @@ Preload.prototype = {
     this.load.image('getReady', 'assets/get-ready.png');
     this.load.image('tapstart', 'assets/tapstart.png');
     this.load.image('handpointer', 'assets/pointer.png');
+    this.load.image('fullScreenButton', 'assets/fullScreen.png');
     
     this.load.image('scoreboard', 'assets/scoreboard.png');
     this.load.spritesheet('medals', 'assets/medals.png',44, 46, 2);

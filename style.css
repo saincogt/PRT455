@@ -1,0 +1,225 @@
+
+
+
+
+
+/*----------------news---------*/
+
+
+	
+/*-----------------------------picture-------------------*/
+
+/*----------------top---------*/
+.top{
+width:880px;
+height:237px;
+clear:both;
+margin:15px 0 0 0;
+float:left;
+background:url(images/tab_bg.jpg) no-repeat center;
+}
+.top_left{
+width:225px;
+float:left;
+padding:25px 0 0 10px;
+}
+.middle_text{
+width:300px;
+float:left;
+padding:10px 0 0 10px;
+}
+.middle_text p{
+color:#FFFFFF;
+}
+.tabs{
+width:276px;
+float:right;
+padding:10px 25px 0 0;
+}
+.tab{
+display:block;
+width:276px;
+height:67px;
+margin:0 0 4px 0;
+background:url(images/tab_bg.png) no-repeat center bottom;
+_background:url(images/tab_bg.gif) no-repeat center bottom;
+text-decoration:none;
+}
+p.tab_text{
+width:190px;
+color:#FFFFFF;
+padding:20px 0 0 10px;
+text-align:center;
+}
+p.tab_text a{
+font-size:14px;
+font-weight:bold;
+color:#deff6b;
+text-decoration:none;
+}
+img.tab_icon{
+float:right;
+padding:0px 5px 0 0px;
+}
+span.green{
+font-size:14px;
+font-weight:bold;
+color:#deff6b;
+}
+
+/*-----------------------------main------------------*/
+
+
+.main{
+width:880px;
+float:left;
+padding:12px 0 0 18px;
+margin-bottom:30px;
+
+}
+
+
+
+.group_block{
+width:350px;
+margin-left:45px;
+float:left;
+padding:20px 15px 0 0;
+margin-bottom:15px;
+}
+
+.group_logo{
+width:220px;
+float:right;
+padding:20px 15px 0 0;
+margin-bottom:15px;
+}
+.group_details_logo{
+width:130px;
+float:right;
+height:60px;
+}
+
+.group_details_logo a{
+	color:#fff;
+	
+}
+
+
+.group_details a{
+	color:#fff;
+	
+}
+.icon_bottom{
+float:left;
+height:60px;
+
+}
+
+.icon_left{
+float:left;
+width:120px;
+}
+.group_details{
+float:left;
+width:185px;
+padding:0 0 0 10px;
+}
+.group_details a{
+	color:#fff;
+	
+}
+
+.group_details a:hover{
+	color:#FF0;
+	
+}
+
+
+/*-----------------------------footer------------------*/
+
+
+/*...
+#right {
+	width: 800px;
+	height: 9-0px;
+	overflow: hidden;
+	padding: 0px;
+	clear:both;
+	margin-left:50px;
+	}
+
+#right img {
+	height: 60px;
+	margin: 15px;
+	border: 0px;
+	clear:both;
+	}
+	..*/
+/*.................................slideshow......................*/
+	
+	
+	
+	
+
+		
+	h3{
+		font-size:140%;
+		font-weight:normal;
+		}	
+	img{border:none;}
+	
+	/* image replacement */
+        .graphic, #prevBtn, #nextBtn, #slider1prev, #slider1next{
+            margin:0;
+            padding:0;
+            display:block;
+            overflow:hidden;
+            text-indent:-8000px;
+            }
+    /* // image replacement */
+			
+		
+				
+	#content{
+		position:relative;
+	
+		}			
+
+	
+		
+	/* numeric controls */	
+
+	ol#controls{
+		margin:1em 0;
+		padding:0;
+		height:28px;	
+		}
+	ol#controls li{
+		margin:0 10px 0 0; 
+		padding:0;
+		float:left;
+		list-style:none;
+		height:28px;
+		line-height:28px;
+		}
+	ol#controls li a{
+		float:left;
+		height:28px;
+		line-height:28px;
+		border:1px solid #ccc;
+		background:#DAF3F8;
+		color:#555;
+		padding:0 10px;
+		text-decoration:none;
+		}
+	ol#controls li.current a{
+		background:#5DC9E1;
+		color:#fff;
+		}
+	ol#controls li a:focus, #prevBtn a:focus, #nextBtn a:focus{outline:none;}
+	
+/* // Easy Slider */	
+
+
+
